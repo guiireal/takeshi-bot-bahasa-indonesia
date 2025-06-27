@@ -587,7 +587,7 @@ Semua file contoh disimpan di `assets/samples/`:
     - 📝 loader.js ➔ _skrip pemuatan fungsi_
     - 📝 menu.js ➔ _menu robot_
     - 📝 test.js ➔ _skrip tes_
-- ⚡-cases-estao-aqui ➔ _easter egg_ 
+- ⚡-kasus-kasus-ada-di-sini ➔ _easter egg_ 
 - 📝 index.js ➔ _skrip entry point bot untuk hosting_
 - 📝.gitignore ➔ _file untuk tidak mengupload folder tertentu ke GitHub_
 - 📝LICENSE ➔ _file lisensi_
