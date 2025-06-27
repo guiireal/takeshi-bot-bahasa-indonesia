@@ -6,7 +6,7 @@ module.exports = {
   description:
     "Daftar semua contoh yang tersedia untuk pengiriman pesan bagi pengembang",
   commands: ["samples-of-messages", "sample-of-messages"],
-  usage: `${PREFIX}contoh-dari-pesan`,
+  usage: `${PREFIX}samples-of-messages`,
   /**
    * @param {CommandHandleProps} props
    * @returns {Promise<void>}
