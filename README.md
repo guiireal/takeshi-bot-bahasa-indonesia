@@ -31,7 +31,7 @@
     <img src="https://flagcdn.com/w40/us.png" width="24" alt="English">
     <strong>English</strong> — <a href="https://github.com/guiireal/takeshi-bot-english">click here</a>
   </li>
-    <li>
+  <li>
     <img src="https://flagcdn.com/w40/es.png" width="24" alt="Español">
     <strong>Español</strong> — <a href="https://github.com/guiireal/takeshi-bot-espanol">haz clic aquí</a>
   </li>
@@ -587,13 +587,13 @@ Semua file contoh disimpan di `assets/samples/`:
     - 📝 loader.js ➔ _skrip pemuatan fungsi_
     - 📝 menu.js ➔ _menu robot_
     - 📝 test.js ➔ _skrip tes_
-- ⚡-kasus-kasus-ada-di-sini ➔ _easter egg_ 
+- 📝 ⚡-kasus-kasus-ada-di-sini.js ➔ _easter egg_ 
 - 📝 index.js ➔ _skrip entry point bot untuk hosting_
-- 📝.gitignore ➔ _file untuk tidak mengupload folder tertentu ke GitHub_
-- 📝LICENSE ➔ _file lisensi_
-- 📝package-lock.json ➔ _file cache dependensi bot_
-- 📝package.json ➔ _file definisi dependensi bot_
-- 📝README.md ➔ _dokumentasi ini_
+- 📝 .gitignore ➔ _file untuk tidak mengupload folder tertentu ke GitHub_
+- 📝 LICENSE ➔ _file lisensi_
+- 📝 package-lock.json ➔ _file cache dependensi bot_
+- 📝 package.json ➔ _file definisi dependensi bot_
+- 📝 README.md ➔ _dokumentasi ini_
 
 ## Error umum
 
