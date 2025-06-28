@@ -295,49 +295,50 @@ exports.SPIDER_API_TOKEN = "token_anda_di_sini";
 
 | Fungsi | Konteks | Memerlukan Spider X API?
 | ------------ | --- | ---
-| Ubah gambar bot | Pemilik | ❌
-| Matikan bot di grup | Pemilik | ❌
-| Jalankan perintah infrastruktur | Pemilik | ❌
-| Nyalakan bot di grup | Pemilik | ❌
 | Dapatkan ID grup | Pemilik | ❌
-| Buka grup | Admin | ❌
-| Jadwalkan pesan | Admin | ❌
+| Jalankan perintah infrastruktur | Pemilik | ❌
+| Matikan bot di grup | Pemilik | ❌
+| Nyalakan bot di grup | Pemilik | ❌
+| Ubah gambar bot | Pemilik | ❌
+| Aktifkan/nonaktifkan auto-respon | Admin | ❌
+| Aktifkan/nonaktifkan keluar grup | Admin | ❌
+| Aktifkan/nonaktifkan sambutan | Admin | ❌
 | Anti-link | Admin | ❌
 | Ban member | Admin | ❌
-| Tutup grup | Admin | ❌
-| Aktifkan/nonaktifkan auto-respon | Admin | ❌
-| Aktifkan/nonaktifkan sambutan | Admin | ❌
-| Aktifkan/nonaktifkan keluar grup | Admin | ❌
 | Bersihkan chat | Admin | ❌
-| Mention semua | Admin | ❌
-| Ubah nama grup | Admin | ❌
 | Bisu/buka bisu | Admin | ❌
+| Buka grup | Admin | ❌
+| Hanya untuk admin | Admin | ❌
+| Jadwalkan pesan | Admin | ❌
+| Mention semua | Admin | ❌
+| Tutup grup | Admin | ❌
+| Ubah nama grup | Admin | ❌
 | Ungkap | Admin | ❌
 | Blur gambar | Member | ❌
-| Kanvas penjara | Member | ✅
-| Kanvas balik | Member | ✅
-| Kanvas RIP | Member | ✅
-| Perintah hiburan/game | Member |❌
+| Buat link | Member | ❌
 | Cermin gambar | Member | ❌
 | Chat palsu | Member | ❌
-| Stiker teks animasi | Member | ✅
-| Generasi gambar dengan AI | Member | ✅
-| Buat link | Member | ❌
-| Google Gemini | Member | ✅
-| Google Search | Member | ✅
-| Gambar dengan kontras | Member | ❌
+| Download video TikTok | Member | ✅
 | Gambar AI PixArt | Member | ✅
 | Gambar AI Stable Diffusion Turbo | Member | ✅
-| Gambar pixel | Member | ❌
+| Gambar dengan kontras | Member | ❌
 | Gambar hitam/putih | Member | ❌
+| Gambar pixel | Member | ❌
+| Ganti nama stiker | Member | ❌
+| Generasi gambar dengan AI | Member | ✅
+| Google Gemini | Member | ✅
+| Google Search | Member | ✅
+| Kanvas balik | Member | ✅
+| Kanvas penjara | Member | ✅
+| Kanvas RIP | Member | ✅
+| Perintah hiburan/game | Member |❌
 | Ping | Member | ❌
 | Putar audio | Member | ✅
 | Putar video | Member | ✅
-| Ganti nama stiker | Member | ❌
 | Stiker | Member | ❌
 | Stiker AI  | Member | ✅
 | Stiker ke gambar | Member | ❌
-| Download video TikTok | Member | ✅
+| Stiker teks animasi | Member | ✅
 | YT MP3 | Member | ✅
 | YT MP4 | Member | ✅
 | YT Search | Member | ✅
