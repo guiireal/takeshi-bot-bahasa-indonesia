@@ -42,7 +42,7 @@
  * ---------------- 🤖 DI MANA SAYA MEMODIFIKASI MENU? 🤖 ----------------
  *
  * Buka folder "src"
- * Pergi ke file "messages.js" dan edit menunya!
+ * Pergi ke file "menu.js" dan edit menunya!
  * Ingat saja, lakukan semuanya di dalam tanda kutip (`), karena itu adalah template string.
  *
  * Tidak mengerti?

@@ -22,6 +22,7 @@ const {
   getAutoResponderResponse,
   isActiveAutoResponderGroup,
   isActiveAntiLinkGroup,
+  isActiveOnlyAdmins,
 } = require("./database");
 const { errorLog } = require("../utils/logger");
 const { ONLY_GROUP_ID } = require("../config");
@@ -41,14 +42,18 @@ exports.dynamicCommand = async (paramsHandler, startProcess) => {
     webMessage,
   } = paramsHandler;
 
-  if (isActiveAntiLinkGroup(remoteJid) && isLink(fullMessage)) {
-    if (!userJid) return;
+  const activeGroup = isActiveGroup(remoteJid);
+
+  if (activeGroup && isActiveAntiLinkGroup(remoteJid) && isLink(fullMessage)) {
+    if (!userJid) {
+      return;
+    }
 
     if (!(await isAdmin({ remoteJid, userJid, socket }))) {
       await socket.groupParticipantsUpdate(remoteJid, [userJid], "remove");
 
       await sendReply(
-        "Anti-link diaktifkan! Anda telah dikeluarkan karena mengirim link!"
+        "Anti-link diaktifkan! Anda telah dihapus karena mengirim link!"
       );
 
       await socket.sendMessage(remoteJid, {
@@ -70,7 +75,10 @@ exports.dynamicCommand = async (paramsHandler, startProcess) => {
     return;
   }
 
-  if (!verifyPrefix(prefix) || !hasTypeOrCommand({ type, command })) {
+  if (
+    activeGroup &&
+    (!verifyPrefix(prefix) || !hasTypeOrCommand({ type, command }))
+  ) {
     if (isActiveAutoResponderGroup(remoteJid)) {
       const response = getAutoResponderResponse(fullMessage);
 
@@ -82,16 +90,27 @@ exports.dynamicCommand = async (paramsHandler, startProcess) => {
     return;
   }
 
-  if (!(await checkPermission({ type, ...paramsHandler }))) {
+  if (activeGroup && !(await checkPermission({ type, ...paramsHandler }))) {
     await sendErrorReply(
       "Anda tidak memiliki izin untuk menjalankan perintah ini!"
     );
     return;
   }
 
-  if (!isActiveGroup(remoteJid) && command.name !== "on") {
+  if (
+    activeGroup &&
+    isActiveOnlyAdmins(remoteJid) &&
+    !(await isAdmin({ remoteJid, userJid, socket }))
+  ) {
     await sendWarningReply(
-      "Grup ini dinonaktifkan! Minta pemilik grup untuk mengaktifkan bot!"
+      "Hanya administrator yang dapat menjalankan perintah!"
+    );
+    return;
+  }
+
+  if (!activeGroup && command.name !== "on") {
+    await sendWarningReply(
+      "Grup ini tidak aktif! Minta pemilik grup untuk mengaktifkan bot!"
     );
 
     return;
@@ -106,16 +125,18 @@ exports.dynamicCommand = async (paramsHandler, startProcess) => {
   } catch (error) {
     if (badMacHandler.handleError(error, `command:${command.name}`)) {
       await sendWarningReply(
-        "Error sinkronisasi sementara. Coba lagi dalam beberapa detik."
+        "Kesalahan sinkronisasi sementara. Coba lagi dalam beberapa detik."
       );
       return;
     }
 
     if (badMacHandler.isSessionError(error)) {
       errorLog(
-        `Error sesi selama eksekusi perintah ${command.name}: ${error.message}`
+        `Kesalahan sesi saat menjalankan perintah ${command.name}: ${error.message}`
       );
-      await sendWarningReply("Error komunikasi. Coba jalankan perintah lagi.");
+      await sendWarningReply(
+        "Kesalahan komunikasi. Coba jalankan perintah lagi."
+      );
       return;
     }
 
@@ -126,9 +147,9 @@ exports.dynamicCommand = async (paramsHandler, startProcess) => {
     } else if (error instanceof DangerError) {
       await sendErrorReply(error.message);
     } else {
-      errorLog("Error saat menjalankan perintah", error);
+      errorLog("Kesalahan saat menjalankan perintah", error);
       await sendErrorReply(
-        `Terjadi error saat menjalankan perintah ${command.name}! Developer telah diberitahu!
+        `Terjadi kesalahan saat menjalankan perintah ${command.name}! Pengembang telah diberitahu!
       
 📄 *Detail*: ${error.message}`
       );

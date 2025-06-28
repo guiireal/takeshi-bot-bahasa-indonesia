@@ -37,6 +37,11 @@ declare global {
     fullMessage: string;
 
     /**
+     * Jika pesan adalah audio.
+     */
+    isAudio: boolean;
+
+    /**
      * Jika pesan berasal dari grup.
      */
     isGroup: boolean;
@@ -122,6 +127,12 @@ declare global {
       id: string;
       participant: string;
     }): Promise<void>;
+
+    /**
+     * Mengunduh audio dari pesan saat ini.
+     * @returns Promise dengan jalur audio
+     */
+    downloadAudio(): Promise<string>;
 
     /**
      * Mengunduh gambar dari pesan saat ini.

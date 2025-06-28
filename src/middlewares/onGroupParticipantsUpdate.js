@@ -1,6 +1,6 @@
 /**
  * Event yang dipanggil ketika pengguna
- * masuk atau keluar dari grup WhatsApp.
+ * bergabung atau keluar dari grup WhatsApp.
  *
  * @author Dev Gui
  */
@@ -10,8 +10,9 @@ const { onlyNumbers } = require("../utils");
 const {
   isActiveWelcomeGroup,
   isActiveExitGroup,
+  isActiveGroup,
 } = require("../utils/database");
-
+const { welcomeMessage, exitMessage } = require("../messages");
 const { catBoxUpload } = require("../services/catbox");
 const {
   spiderAPITokenConfigured,
@@ -30,11 +31,28 @@ exports.onGroupParticipantsUpdate = async ({
       return;
     }
 
+    if (!isActiveGroup(remoteJid)) {
+      return;
+    }
+
     if (isActiveWelcomeGroup(remoteJid) && action === "add") {
       const { buffer, profileImage } = await getProfileImageData(
         socket,
         userJid
       );
+
+      const hasMemberMention = welcomeMessage.includes("@member");
+      const mentions = [];
+
+      let finalWelcomeMessage = welcomeMessage;
+
+      if (hasMemberMention) {
+        finalWelcomeMessage = welcomeMessage.replace(
+          "@member",
+          `@${onlyNumbers(userJid)}`
+        );
+        mentions.push(userJid);
+      }
 
       if (spiderAPITokenConfigured) {
         try {
@@ -45,29 +63,29 @@ exports.onGroupParticipantsUpdate = async ({
           }
 
           const url = welcome(
-            "peserta",
-            "Anda adalah anggota baru grup!",
+            "participante",
+            "Anda adalah anggota terbaru grup!",
             link
           );
 
           await socket.sendMessage(remoteJid, {
             image: { url },
-            caption: `Selamat datang di grup kami, @${onlyNumbers(userJid)}!`,
-            mentions: [userJid],
+            caption: finalWelcomeMessage,
+            mentions,
           });
         } catch (error) {
-          console.error("Error saat mengunggah gambar:", error);
+          console.error("Kesalahan saat mengunggah gambar:", error);
           await socket.sendMessage(remoteJid, {
             image: buffer,
-            caption: `Selamat datang di grup kami, @${onlyNumbers(userJid)}!`,
-            mentions: [userJid],
+            caption: finalWelcomeMessage,
+            mentions,
           });
         }
       } else {
         await socket.sendMessage(remoteJid, {
           image: buffer,
-          caption: `Selamat datang di grup kami, @${onlyNumbers(userJid)}!`,
-          mentions: [userJid],
+          caption: finalWelcomeMessage,
+          mentions,
         });
       }
 
@@ -80,6 +98,19 @@ exports.onGroupParticipantsUpdate = async ({
         userJid
       );
 
+      const hasMemberMention = exitMessage.includes("@member");
+      const mentions = [];
+
+      let finalExitMessage = exitMessage;
+
+      if (hasMemberMention) {
+        finalExitMessage = exitMessage.replace(
+          "@member",
+          `@${onlyNumbers(userJid)}`
+        );
+        mentions.push(userJid);
+      }
+
       if (spiderAPITokenConfigured) {
         try {
           const link = await catBoxUpload(buffer);
@@ -88,26 +119,26 @@ exports.onGroupParticipantsUpdate = async ({
             throw new Error("Link tidak valid");
           }
 
-          const url = exit("anggota", "Anda adalah anggota yang baik", link);
+          const url = exit("membro", "Anda adalah anggota yang baik", link);
 
           await socket.sendMessage(remoteJid, {
             image: { url },
-            caption: `Selamat tinggal, @${onlyNumbers(userJid)}!`,
-            mentions: [userJid],
+            caption: finalExitMessage,
+            mentions,
           });
         } catch (error) {
-          console.error("Error saat mengunggah gambar:", error);
+          console.error("Kesalahan saat mengunggah gambar:", error);
           await socket.sendMessage(remoteJid, {
             image: buffer,
-            caption: `Selamat tinggal, @${onlyNumbers(userJid)}!`,
-            mentions: [userJid],
+            caption: finalExitMessage,
+            mentions,
           });
         }
       } else {
         await socket.sendMessage(remoteJid, {
           image: buffer,
-          caption: `Selamat tinggal, @${onlyNumbers(userJid)}!`,
-          mentions: [userJid],
+          caption: finalExitMessage,
+          mentions,
         });
       }
 
@@ -117,7 +148,7 @@ exports.onGroupParticipantsUpdate = async ({
     }
   } catch (error) {
     console.error(
-      "Error saat memproses event onGroupParticipantsUpdate:",
+      "Kesalahan saat memproses event onGroupParticipantsUpdate:",
       error
     );
     process.exit(1);

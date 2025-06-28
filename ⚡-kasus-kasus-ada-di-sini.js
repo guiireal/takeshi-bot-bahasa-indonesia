@@ -38,8 +38,8 @@
  *
  * ---------------- 🤖 DI MANA SAYA MEMODIFIKASI MENU? 🤖 ----------------
  *
- * Buka folder "src" kemudian folder "utils"
- * Pergi ke file "messages.js" dan edit return dari fungsi "menuMessage"!
+ * Buka folder "src"
+ * Pergi ke file "menu.js" dan edit menunya!
  * Ingat saja, lakukan semuanya di dalam tanda kutip (`), karena itu adalah template string.
  *
  * Tidak mengerti?

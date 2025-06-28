@@ -8,7 +8,7 @@
 
 <div align="center">
     <a href="https://github.com/guiireal/takeshi-bot">
-        <img alt="Version" src="https://img.shields.io/badge/Vers%C3%A3o-5.2.1-blue">
+        <img alt="Version" src="https://img.shields.io/badge/Vers%C3%A3o-5.3.0-blue">
     </a>
 </div>
 
@@ -440,6 +440,14 @@ Takeshi Bot memiliki auto-responder bawaan, edit file di `./database/auto-respon
     }
 ]
 ```
+
+## Di mana menu bot?
+
+Menu bot terletak di folder `src` dalam berkas yang disebut `menu.js`
+
+## Di mana saya dapat mengubah pesan selamat datang dan ketika seseorang meninggalkan grup?
+
+Pesan-pesan tersebut terletak di folder `src` dalam berkas yang disebut `messages.js`
 
 ## Implementasi teknis dari contoh
 

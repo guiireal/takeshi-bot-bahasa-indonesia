@@ -1,5 +1,7 @@
+const { isActiveAntiLinkGroup } = require("../../utils/database");
+
 const { PREFIX } = require(`${BASE_DIR}/config`);
-const { InvalidParameterError } = require(`${BASE_DIR}/errors`);
+const { InvalidParameterError, WarningError } = require(`${BASE_DIR}/errors`);
 const {
   activateAntiLinkGroup,
   deactivateAntiLinkGroup,
@@ -7,7 +9,7 @@ const {
 
 module.exports = {
   name: "anti-link",
-  description: "Mengaktifkan/menonaktifkan fitur anti-link di grup.",
+  description: "Aktifkan/nonaktifkan fitur anti-link di grup.",
   commands: ["anti-link"],
   usage: `${PREFIX}anti-link (1/0)`,
   /**
@@ -17,7 +19,7 @@ module.exports = {
   handle: async ({ args, sendReply, sendSuccessReact, remoteJid }) => {
     if (!args.length) {
       throw new InvalidParameterError(
-        "Anda perlu menulis 1 atau 0 (aktifkan atau nonaktifkan)!"
+        "Anda perlu mengetik 1 atau 0 (aktifkan atau nonaktifkan)!"
       );
     }
 
@@ -26,7 +28,16 @@ module.exports = {
 
     if (!antiLinkOn && !antiLinkOff) {
       throw new InvalidParameterError(
-        "Anda perlu menulis 1 atau 0 (aktifkan atau nonaktifkan)!"
+        "Anda perlu mengetik 1 atau 0 (aktifkan atau nonaktifkan)!"
+      );
+    }
+
+    const hasActive = antiLinkOn && isActiveAntiLinkGroup(remoteJid);
+    const hasInactive = antiLinkOff && !isActiveAntiLinkGroup(remoteJid);
+
+    if (hasActive || hasInactive) {
+      throw new WarningError(
+        `Fitur anti-link sudah ${antiLinkOn ? "diaktifkan" : "dinonaktifkan"}!`
       );
     }
 
@@ -40,6 +51,6 @@ module.exports = {
 
     const context = antiLinkOn ? "diaktifkan" : "dinonaktifkan";
 
-    await sendReply(`Fitur anti-link berhasil ${context}!`);
+    await sendReply(`Fitur anti-link ${context} dengan sukses!`);
   },
 };
