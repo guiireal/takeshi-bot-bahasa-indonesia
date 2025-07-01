@@ -8,7 +8,7 @@
 
 <div align="center">
     <a href="https://github.com/guiireal/takeshi-bot">
-        <img alt="Version" src="https://img.shields.io/badge/Vers%C3%A3o-5.3.0-blue">
+        <img alt="Version" src="https://img.shields.io/badge/Vers%C3%A3o-5.4.0-blue">
     </a>
 </div>
 
@@ -309,6 +309,7 @@ exports.SPIDER_API_TOKEN = "token_anda_di_sini";
 | Bisu/buka bisu | Admin | ❌
 | Buka grup | Admin | ❌
 | Hanya untuk admin | Admin | ❌
+| Hapus pesan | Admin | ❌
 | Jadwalkan pesan | Admin | ❌
 | Mention semua | Admin | ❌
 | Tutup grup | Admin | ❌
