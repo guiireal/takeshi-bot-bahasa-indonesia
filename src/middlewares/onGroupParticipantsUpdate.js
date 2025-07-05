@@ -4,21 +4,21 @@
  *
  * @author Dev Gui
  */
+const fs = require("node:fs");
 const { getProfileImageData } = require("../services/baileys");
-const fs = require("fs");
-const { onlyNumbers } = require("../utils");
+const { onlyNumbers, getRandomNumber } = require("../utils");
 const {
   isActiveWelcomeGroup,
   isActiveExitGroup,
   isActiveGroup,
 } = require("../utils/database");
 const { welcomeMessage, exitMessage } = require("../messages");
-const { catBoxUpload } = require("../services/catbox");
 const {
   spiderAPITokenConfigured,
   exit,
   welcome,
 } = require("../services/spider-x-api");
+const { upload } = require("../services/upload");
 
 exports.onGroupParticipantsUpdate = async ({
   userJid,
@@ -56,14 +56,17 @@ exports.onGroupParticipantsUpdate = async ({
 
       if (spiderAPITokenConfigured) {
         try {
-          const link = await catBoxUpload(buffer);
+          const link = await upload(
+            buffer,
+            `${getRandomNumber(10_000, 99_9999)}.png`
+          );
 
           if (!link) {
-            throw new Error("Link tidak valid");
+            throw new Error("Tidak dapat mengunggah gambar, coba lagi nanti!");
           }
 
           const url = welcome(
-            "participante",
+            "peserta",
             "Anda adalah anggota terbaru grup!",
             link
           );
@@ -113,13 +116,16 @@ exports.onGroupParticipantsUpdate = async ({
 
       if (spiderAPITokenConfigured) {
         try {
-          const link = await catBoxUpload(buffer);
+          const link = await upload(
+            buffer,
+            `${getRandomNumber(10_000, 99_9999)}.png`
+          );
 
           if (!link) {
-            throw new Error("Link tidak valid");
+            throw new Error("Tidak dapat mengunggah gambar, coba lagi nanti!");
           }
 
-          const url = exit("membro", "Anda adalah anggota yang baik", link);
+          const url = exit("anggota", "Anda adalah anggota yang baik", link);
 
           await socket.sendMessage(remoteJid, {
             image: { url },
