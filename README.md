@@ -61,7 +61,7 @@ Kami tidak bertanggung jawab atas penyalahgunaan bot ini. Adalah tanggung jawab 
 ## Instalasi di Termux
 
 1 - Buka Termux dan jalankan perintah berikut.
-_Tidak punya Termux? [Klik di sini untuk mengunduh versi terbaru](https://www.mediafire.com/file/082otphidepx7aq/Termux_0.119.1_aldebaran_dev.apk) atau [klik di sini untuk mengunduh versi Play Store](https://play.google.com/store/apps/details?id=com.termux) jika versi MediaFire sebelumnya tidak berfungsi._
+_Tidak punya Termux? [Klik di sini untuk mengunduh versi terbaru](https://www.mediafire.com/file/wxpygdb9bcb5npb/Termux_0.118.3_Dev_Gui.apk) atau [klik di sini untuk mengunduh versi Play Store](https://play.google.com/store/apps/details?id=com.termux) jika versi MediaFire sebelumnya tidak berfungsi._
 
 ```sh
 pkg upgrade -y && pkg update -y && pkg install git -y && pkg install nodejs-lts -y && pkg install ffmpeg -y
