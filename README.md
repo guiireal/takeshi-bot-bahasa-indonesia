@@ -41,7 +41,7 @@ Tentu, aqui está a tradução para o indonésio:
 
 ## ❗ PENTING
 
-Proyek ini tidak diperbarui sesering versi Portugis atau Spanyol karena permintaan yang rendah. Jika Anda menemukan masalah, silakan ajukan PR (Pull Request) atau buka issue!
+Proyek ini tidak diperbarui sesering versi Portugis atau Spanyol karena permintaan yang rendah. Jika Anda menemukan masalah, silakan ajukan PR (pull request) atau buka issue!
 
 ## 💻 Teknologi yang terlibat
 
