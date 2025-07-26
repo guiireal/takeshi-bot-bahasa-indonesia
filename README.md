@@ -88,7 +88,7 @@ cd /sdcard
 4 - Clone repository.
 
 ```sh
-git clone https://github.com/guiireal/takeshi-bot-espanol.git
+git clone https://github.com/guiireal/takeshi-bot-bahasa-indonesia.git
 ```
 
 5 - Masuk ke folder yang telah di-clone.
@@ -205,7 +205,7 @@ npm install pm2 -g
 10 - Clone repository bot di tempat yang Anda inginkan.
 
 ```sh
-git clone https://github.com/guiireal/takeshi-bot-espanol.git
+git clone https://github.com/guiireal/takeshi-bot-bahasa-indonesia.git
 ```
 
 11 - Masuk ke folder yang telah di-clone.
